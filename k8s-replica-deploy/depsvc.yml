@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spec-dep
+  namespace: prod
+spec:
+  type: LoadBalancer
+  selector:
+    web: webexpre
+  ports:
+    - name: port-define
+      port: 80
+      protocol: TCP
+      targetPort: 80
+
+

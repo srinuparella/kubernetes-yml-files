@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rep-file
+  labels:
+    env: uat  
+  namespace: release
+  annotations: 
+    name: 934545598565.dkr.ecr.ap-south-1.amazonaws.com/repli-repo
+spec:
+  minReadySeconds: 5
+  replicas: 3
+  selector:
+    matchLabels:
+      env: rep-cont-uat 
+  template:
+    metadata: 
+      name: cont-level
+      labels: 
+        env: rep-cont-uat
+    spec:
+      containers:
+        - name : rep-cont-1
+          image: 934545598565.dkr.ecr.ap-south-1.amazonaws.com/repli-repo:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP

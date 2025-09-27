@@ -1,0 +1,97 @@
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: annot-pod
+#   labels:
+#     app: zomoto
+#     env: annoto-label
+#   annotations:
+#     ikachalu: annotzomoto
+#     naaistam: anno-sonarq
+# spec:
+#   containers:
+#     - name: myimage
+#       image: nginx
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: annot-pod
+  labels:
+    app: zomoto
+    env: annoto-label
+  annotations:
+    ikachalu: annotzomoto
+    naaistam: anno-sonarq
+  namespace: "srinugaadu"     
+spec:
+  containers:
+    - name: myimage
+      image: nginx
+
+
+----------------------------------------------------
+--- 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-pod-1
+  annotatuins: node-anno
+  labels:
+    Env: Dev-Pod
+spec:
+  containers:
+    - name: node-contain-1
+      image: nginx
+      ports:
+        - containerPort: 80
+          protocol: TCP
+  
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-pod-2
+  annotatuins: node-anno
+  labels:
+    Env: Dev-Pod
+spec:
+  containers:
+    - name: node-contain-2
+      image: nginx
+      ports:
+        - containerPort: 80
+          protocol: TCP
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-pod-3
+  annotatuins: node-anno
+  labels:
+    Env: Dev-Pod
+spec:
+  containers:
+    - name: node-contain-3
+      image: nginx
+      ports:
+        - containerPort: 80
+          protocol: TCP
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-pod-4
+  annotatuins: node-anno
+  labels:
+    Env: Dev-Pod
+spec:
+  containers:
+    - name: node-contain-4
+      image: nginx
+      ports:
+        - containerPort: 80
+          protocol: TCP                         

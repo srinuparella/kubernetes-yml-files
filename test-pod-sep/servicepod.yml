@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-pod
+spec:
+  selector:
+    Env: Dev-Pod
+  type: ClusterIP
+  ports:
+    - port: 80
+      protocol : "TCP"
+      targetPort: 80
+   
+
+
+# -----------------------------
+
+#     1  exit
+#     2  halt
+#     3  FILE=/ks/wait-background.sh; while ! test -f ${FILE}; do clear; sleep 0.1; done; bash ${FILE}
+#     4  vi pod.yml
+#     5  kubectl apply -f .
+#     6  vi pod.yml
+#     7  kubectl apply -f .
+#     8  vi pod.yml 
+#     9  kubectl apply -f .
+#    10  kubectl get pod
+#    11  kubectl get pod -w
+#    12  kubectl exec -it pod node-pod-1 -- bash
+#    13  kubectl exec -it  node-pod-1 -- bash
+#    14  kubect describe node-pod-
+#    15  kubect describe node-pod-1
+#    16  kubectl describe node-pod-1
+#    17  kubectl describe pod 
+#    18  kubectl exec -it  node-pod-2 -- bash
+#    19  kubectl get svc
+#    20  kubectl exec -it  node-pod-2 -- bash
+#    21  vi svc.yml
+#    22  kubectl apply -f svc.yml 
+#    23  kubectl get nodes
+#    24  kubectl get service svc-pod 
+#    25  kubectl exec -it  node-pod-2 -- bash
+#    26  kubectl exec -it  node-pod-3 -- bash
+#    27  history

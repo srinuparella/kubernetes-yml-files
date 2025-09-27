@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-name
+  namespace: testing
+spec:
+  selector: 
+    app: rep-cont-match   # This must match your Pod/Deployment labels
+  type: LoadBalancer
+  ports:
+    - name: port-define
+      port: 80
+      protocol: TCP
+      targetPort: 80
+
+# whenever we communicate with pods dont mentinos replica lables ini service file just call with under template lebel pod \s level lales in service file lables in that moment our appliaion is running

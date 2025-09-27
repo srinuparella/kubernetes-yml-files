@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: slee-svc
+  namespace: prod
+spec:
+  type: LoadBalancer
+  selector:
+    app: slee
+  ports:
+    - name: http
+      protocol: TCP      # explicitly define protocol
+      port: 80
+      targetPort: 80

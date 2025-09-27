@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind : Deployment
+metadata:
+  name: dep-resource
+  namespace: prod
+  annotations:
+    ecr: 934545598565.dkr.ecr.ap-south-1.amazonaws.com/cssi
+spec:
+  minReadySeconds: 5
+  replicas: 3
+  selector:
+    matchExpressions: 
+      - key: web
+        operator: In
+        values: 
+          - webexpre
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      name: dep-pod
+      labels:
+        web: webexpre
+    spec:
+      containers:
+        - name: dep-cont
+          image: 934545598565.dkr.ecr.ap-south-1.amazonaws.com/cssi:new
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /
+              port: 80
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "350Mi"
+            limits:
+              cpu: "500m" 
+              memory: "1000Mi"
+
+

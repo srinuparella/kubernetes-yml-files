@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-db
+data:
+  MYSQL_ROOT_PASSWORD: abcd
+  MYSQL_DATABASE: config
+  github_url: https://github.com/srinuparella
+  sonarqube_url: https://www.sonarsource.com/products/sonarqube/

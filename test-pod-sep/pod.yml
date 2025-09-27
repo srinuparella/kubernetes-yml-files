@@ -1,0 +1,54 @@
+# Date:02-09-2025
+
+Pod : Only one type in Kubernetes (smallest deployable unit).
+
+Containers : Run inside a Pod, but they can have different roles (main, init, sidecar, etc).
+
+So, containers ≠ pod types. They are just patterns inside a pod
+
+containers: contaires are concept of k8s Run inside a Pod
+main container : main application running means main container running on this 
+init container: it is only configuration purpose  [velora tool for using eks backup]
+Note: before side car defination you completly understand any application it has logs in that logs are 2 types access.log and error.log ex in nginx application inside cd /var/log/nginx
+side-car container : logs fetching or pulling from main container i.e main running conatiners main application running  container
+ambasedor container: is not important it means main container is running in your pod additional image configuration theory import
+ephermal conatiner: its also not important theory import only debugging purpose using lets suppose this is shutdown data also lost 
+
+
+
+# sidecar containers example
+# ---------------------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar-pod
+spec:
+  containers:
+    - name: main-container
+      image: nginx # main container done
+      volumeMounts: # go the inside of VolumeMounts
+        - name: nginx-logs
+          mountPath: /var/log/nginx # nginx log path
+# lets take another image busybox 
+# side car container under conatiners
+    - name: sidecar-container
+      image: busybox
+      args: ["bin/sh"]
+      command: ["-c" , "tail -f /var/log/nginx/error.log"]
+# now main application errors we want busybox is lightweight thats wy using cmd 
+# nginx logs attached with busybox thats why we are using volumeMounts
+# this write in before sidecar-container
+# volumeMounts is also a array it is inside of containers
+# now mount 
+      volumeMounts:
+        - name: nginx-logs
+          mountPath: /var/log/nginx #this is main container path it is mount to main container
+          # in real time this way using 
+         
+  volumes:
+    - name: nginx-logs
+      emptyDir: {}        
+
+note:this will be after running side showing pod status crashloopbackof work is same every time k8s create the pod but mage is showing `like crashloopbackupoff just showing loggs by using 
+kubectl logs sidecar-pod -c sidecar-container
+
